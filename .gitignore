@@ -34,3 +34,6 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### MyUtil ###
+src/main/resources/application.properties
