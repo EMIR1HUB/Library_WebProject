@@ -17,25 +17,26 @@ public class LibraryProjectApplication {
 
     @Autowired
     private Environment environment;
+    public static void main(String[] args) {
+        SpringApplication.run(LibraryProjectApplication.class, args);
+    }
 
-    @Bean
-    public DataSource dataSource() {
+    @Bean(name = "dataSource")
+    public DataSource getDataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName(Objects.requireNonNull(environment.getProperty("db.driver")));
         dataSource.setUrl(environment.getProperty("db.url"));
         dataSource.setUsername(environment.getProperty("db.username"));
         dataSource.setPassword(environment.getProperty("db.password"));
+        System.out.println("## getDataSource: " + dataSource);
         return dataSource;
     }
 
     @Bean
-    public JdbcTemplate jdbcTemplate(){return new JdbcTemplate(dataSource()); }
+    public JdbcTemplate jdbcTemplate(){return new JdbcTemplate(getDataSource()); }
 
     @Bean
-    HiddenHttpMethodFilter hiddenHttpMethodFilter() { return new HiddenHttpMethodFilter(); }
-
-    public static void main(String[] args) {
-        SpringApplication.run(LibraryProjectApplication.class, args);
+    HiddenHttpMethodFilter hiddenHttpMethodFilter() {
+        return new HiddenHttpMethodFilter();
     }
-
 }

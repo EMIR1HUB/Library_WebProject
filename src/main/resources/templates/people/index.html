@@ -6,14 +6,30 @@
 </head>
 <body>
 
-<div th:each="person : ${people}">
-    <a th:href="@{/people/{id}(id=${person.getId()})}"
-       th:text="${person.getFullName() + ', ' + person.getDateBirth()}">user</a>
-</div>
+<!--<div th:each="person : ${people}">-->
+<!--    <a th:href="@{/people/{id}(id=${person.getId()})}"-->
+<!--       th:text="${person.getFullName() + ', ' + person.getDateBirth()}">user</a>-->
+<!--</div>-->
+
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>Full Name</th>
+        <th>Date Birth</th>
+    </tr>
+    <tr th:each="person : ${people}">
+        <td th:utext="${person.getId()}">user</td>
+        <td><a th:href="@{/people/{id}(id=${person.getId()})}" th:text="${person.getName() +
+        ' ' + person.getLastName() + ' ' + person.getPatronymic()}">user</a></td>
+        <td th:utext="${person.getDateBirth()}">user</td>
+    </tr>
+</table>
 
 <br><hr>
 
 <a href="/people/new">Create new person</a>
+<br>
+<a href="../">Home</a>
 
 </body>
 </html>

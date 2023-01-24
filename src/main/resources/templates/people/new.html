@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>New person</title>
+</head>
+<body>
+<form th:method="POST" th:action="@{/people}" th:object="${person}">
+    <label for="name">Введите Имя: </label>
+    <input type="text" th:field="*{name}" id="name">
+    <div style="color:red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</div>
+    <br/>
+
+    <label for="lastname">Введите Фамилию: </label>
+    <input type="text" th:field="*{lastName}" id="lastname">
+    <div style="color:red" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">Name Error</div>
+    <br/>
+
+    <label for="patronymic">Введите Отчество: </label>
+    <input type="text" th:field="*{patronymic}" id="patronymic">
+    <div style="color:red" th:if="${#fields.hasErrors('patronymic')}" th:errors="*{patronymic}">Name Error</div>
+    <br/>
+
+    <label for="date_birth">Введите год рождения: </label>
+    <input type="text" th:field="*{dateBirth}" id="date_birth">
+    <div style="color:red" th:if="${#fields.hasErrors('dateBirth')}" th:errors="*{dateBirth}">Name Error</div>
+    <br/>
+
+    <input type="submit" value="Создать">
+</form>
+</body>
+</html>

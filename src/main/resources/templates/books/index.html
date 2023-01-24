@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>All books</title>
+</head>
+<body>
+
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Author</th>
+        <th>Year</th>
+    </tr>
+    <tr th:each="book : ${books}">
+        <td th:utext="${book.getId()}">id</td>
+        <td><a th:href="@{/books/{id}(id=${book.getId()})}" th:text="${book.getName()}">name</a></td>
+        <td><a th:href="@{/books/{id}(id=${book.getId()})}" th:text="${book.getAuthor()}">author</a></td>
+        <td th:utext="${book.getYear()}">year</td>
+    </tr>
+</table>
+
+<br><hr>
+
+<a href="/books/new">Create new person</a>
+<br>
+<a href="../">Home</a>
+</body>
+</html>
