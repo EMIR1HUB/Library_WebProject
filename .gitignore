@@ -7,6 +7,10 @@ mvnw
 mvnw.cmd
 
 
+Person.java
+HibernateSessionFactoryUtil.java
+
+
 ### STS ###
 .apt_generated
 .classpath

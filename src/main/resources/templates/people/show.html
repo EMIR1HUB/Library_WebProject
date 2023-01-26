@@ -10,11 +10,12 @@
     <p th:text="${'Full Name: ' + person.getName() +
         ' ' + person.getLastName() + ' ' + person.getPatronymic()}">VALUE</p>
     <p th:text="${'Date Birth: ' + person.getDateBirth()}">VALUE</p>
+    <p th:text="${'Email: ' + person.getEmail()}">VALUE</p>
+    <p th:text="${'Phone: ' + person.getPhone()}">VALUE</p>
 
     <!--    if person doesn't have books -->
     <div th:if="${books.isEmpty()}">
         <p>Человек пока не взял книги</p>
-        <hr>
     </div>
 
     <!--    if person has books -->
@@ -24,8 +25,9 @@
         <div th:each="book : ${books}">
             <p th:text="${book.getName() + ', ' + book.getAuthor() + ', ' + book.getYear()}">book</p>
         </div>
-        <hr>
     </div>
+
+    <hr>
 
 
 

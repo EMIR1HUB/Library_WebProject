@@ -3,6 +3,7 @@ package com.suleimanov.libraryproject.controllers;
 import com.suleimanov.libraryproject.dao.BookDAO;
 import com.suleimanov.libraryproject.dao.PersonDAO;
 import com.suleimanov.libraryproject.models.PersonInfo;
+import com.suleimanov.libraryproject.util.PersonValidator;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,11 +17,13 @@ public class PeopleController {
 
     private final PersonDAO personDAO;
     private final BookDAO bookDAO;
+    private final PersonValidator personValidator;
 
     @Autowired
-    public PeopleController(PersonDAO personDAO, BookDAO bookDAO) {
+    public PeopleController(PersonDAO personDAO, BookDAO bookDAO, PersonValidator personValidator) {
         this.personDAO = personDAO;
         this.bookDAO = bookDAO;
+        this.personValidator = personValidator;
     }
 
     @GetMapping()
@@ -43,6 +46,7 @@ public class PeopleController {
 
     @PostMapping()
     public String create(@ModelAttribute("person") @Valid PersonInfo personInfo, BindingResult bindingResult) {
+        personValidator.validate(personInfo, bindingResult);    // проверка на одинаковый email
 
         if (bindingResult.hasErrors()) return "people/new";
         personDAO.save(personInfo);
@@ -58,6 +62,7 @@ public class PeopleController {
     @PatchMapping("/{id}")
     public String update(@ModelAttribute("person") @Valid PersonInfo personInfo,
                          BindingResult bindingResult, @PathVariable("id") Long id) {
+        personValidator.validate(personInfo, bindingResult);    // проверка на одинаковый email
 
         if (bindingResult.hasErrors()) return "people/edit";
         personDAO.update(id, personInfo);

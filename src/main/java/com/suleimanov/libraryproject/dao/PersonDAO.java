@@ -7,6 +7,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @Component
@@ -27,14 +28,21 @@ public class PersonDAO {
                 new BeanPropertyRowMapper<>(PersonInfo.class)).stream().findAny().orElse(null);
     }
 
+    public Optional<PersonInfo> show(Long id, String email) {
+        return jdbcTemplate.query("SELECT * FROM person WHERE email = ? AND id != " + id, new Object[]{email},
+                new BeanPropertyRowMapper<>(PersonInfo.class)).stream().findAny();
+    }
+
     public void save(PersonInfo personInfo) {
-        String SQL = "INSERT INTO person(last_name, name, patronymic, date_birth) VALUES (?, ?, ?, ?);";
-        jdbcTemplate.update(SQL, personInfo.getLastName(), personInfo.getName(), personInfo.getPatronymic(), personInfo.getDateBirth());
+        String SQL = "INSERT INTO person(last_name, name, patronymic, date_birth, email, phone) VALUES (?, ?, ?, ?, ?, ?);";
+        jdbcTemplate.update(SQL, personInfo.getLastName(), personInfo.getName(), personInfo.getPatronymic(),
+                personInfo.getDateBirth(), personInfo.getEmail(), personInfo.getPhone());
     }
 
     public void update(Long id, PersonInfo updatePerson) {
-        String SQL = "UPDATE person SET last_name = ?, name = ?, patronymic = ?, date_birth = ? WHERE id = ?";
-        jdbcTemplate.update(SQL, updatePerson.getLastName(), updatePerson.getName(), updatePerson.getPatronymic(), updatePerson.getDateBirth(), id);
+        String SQL = "UPDATE person SET last_name = ?, name = ?, patronymic = ?, date_birth = ?, email = ?, phone = ? WHERE id = ?;";
+        jdbcTemplate.update(SQL, updatePerson.getLastName(), updatePerson.getName(), updatePerson.getPatronymic(),
+                updatePerson.getDateBirth(), updatePerson.getEmail(), updatePerson.getPhone(), id);
     }
 
     public void delete(Long id) {

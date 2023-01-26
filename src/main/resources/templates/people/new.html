@@ -26,6 +26,16 @@
     <div style="color:red" th:if="${#fields.hasErrors('dateBirth')}" th:errors="*{dateBirth}">Name Error</div>
     <br/>
 
+    <label for="email">Введите email: </label>
+    <input type="text" th:field="*{email}" id="email">
+    <div style="color:red" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Name Error</div>
+    <br/>
+
+    <label for="phone">Введите номер телефона: </label>
+    <input type="text" th:field="*{phone}" id="phone">
+    <div style="color:red" th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}">Name Error</div>
+    <br/>
+
     <input type="submit" value="Создать">
 </form>
 </body>
