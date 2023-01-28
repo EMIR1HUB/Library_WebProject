@@ -2,6 +2,7 @@ package com.suleimanov.libraryproject.controllers;
 
 import com.suleimanov.libraryproject.dao.BookDAO;
 import com.suleimanov.libraryproject.dao.PersonDAO;
+import com.suleimanov.libraryproject.models.BookInfo;
 import com.suleimanov.libraryproject.models.PersonInfo;
 import com.suleimanov.libraryproject.util.PersonValidator;
 import jakarta.validation.Valid;
@@ -33,9 +34,11 @@ public class PeopleController {
     }
 
     @GetMapping("/{id}")
-    public String show(@PathVariable("id") Long id, Model model) {
+    public String show(@PathVariable("id") Long id, Model model,
+                       @ModelAttribute("book") BookInfo book) {
         model.addAttribute("person", personDAO.show(id));
         model.addAttribute("books", bookDAO.index(id));
+        model.addAttribute("booksFree", bookDAO.showFreeBooks());
         return "people/show";
     }
 
@@ -73,5 +76,11 @@ public class PeopleController {
     public String delete(@PathVariable("id") Long id) {
         personDAO.delete(id);
         return "redirect:/people";
+    }
+
+    @PatchMapping("/{id}/assign")
+    public String assign(@PathVariable("id") Long person_id, @RequestParam(value = "id") Long book_id){
+        bookDAO.assign(book_id, person_id);
+        return "redirect:/people/" + person_id;
     }
 }

@@ -33,6 +33,10 @@ public class BookDAO {
                 new BeanPropertyRowMapper<>(BookInfo.class)).stream().findAny().orElse(null);
     }
 
+    public List<BookInfo> showFreeBooks(){
+        return jdbcTemplate.query("SELECT * FROM book WHERE person_id IS NULL;", new BeanPropertyRowMapper<>(BookInfo.class));
+    }
+
     public Optional<PersonInfo> getBookOwner(Long id){
         String SQL = "SELECT p.id, p.last_name, p.name, p.patronymic FROM book\n" +
                 "    JOIN person p on p.id = book.person_id\n" +
@@ -51,8 +55,11 @@ public class BookDAO {
     }
 
     public void assign(Long id, PersonInfo person){
-        String SQL = "UPDATE book SET person_id = ? WHERE id = ?";
-        jdbcTemplate.update(SQL, person.getId(), id);
+        jdbcTemplate.update("UPDATE book SET person_id = ? WHERE id = ?", person.getId(), id);
+    }
+
+    public void assign(Long book_id, Long person_id){
+        jdbcTemplate.update("UPDATE book SET person_id = ? WHERE id = ?", person_id, book_id);
     }
 
     public void release(Long id){

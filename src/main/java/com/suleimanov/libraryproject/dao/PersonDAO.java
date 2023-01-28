@@ -1,5 +1,6 @@
 package com.suleimanov.libraryproject.dao;
 
+import com.suleimanov.libraryproject.models.BookInfo;
 import com.suleimanov.libraryproject.models.PersonInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;

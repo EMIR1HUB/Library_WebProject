@@ -80,7 +80,7 @@ public class BookController {
     }
 
     @PatchMapping("/{id}/assign")
-    public String release(@PathVariable("id") Long id, @ModelAttribute("person") PersonInfo personInfo){
+    public String assign(@PathVariable("id") Long id, @ModelAttribute("person") PersonInfo personInfo){
         bookDAO.assign(id, personInfo);
         return "redirect:/books/" + id;
     }
