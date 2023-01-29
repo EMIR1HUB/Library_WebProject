@@ -1,0 +1,66 @@
+/* line 1, ../../../../../My_work/verstca/src/scss/_general.scss */
+:root {
+  --bg-color1: #000000f0;
+  --bg-color2: #6edff6;
+  --bg-color3: #b3404a;
+  --text-color1: #bac2cc;
+  --text-white: #ffffff;
+}
+
+/* line 10, ../../../../../My_work/verstca/src/scss/_general.scss */
+.btn-invisible {
+  display: none;
+}
+
+/* line 14, ../../../../../My_work/verstca/src/scss/_general.scss */
+body {
+  background: var(--bg-color1);
+}
+
+/* line 18, ../../../../../My_work/verstca/src/scss/_general.scss */
+.navbar {
+  background: var(--bg-color1);
+  padding-left: 10%;
+  padding-right: 10%;
+}
+
+/* line 23, ../../../../../My_work/verstca/src/scss/_general.scss */
+.navbar .nav-link {
+  position: relative;
+  color: var(--text-color1);
+}
+
+/* line 27, ../../../../../My_work/verstca/src/scss/_general.scss */
+.navbar .nav-link::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 5px;
+  width: 0;
+  height: 1.5px;
+  background-color: var(--text-white);
+  transition: width 0.35s;
+}
+
+/* line 38, ../../../../../My_work/verstca/src/scss/_general.scss */
+.navbar .nav-link:hover {
+  color: var(--text-white);
+}
+
+/* line 41, ../../../../../My_work/verstca/src/scss/_general.scss */
+.navbar .nav-link:hover::before {
+  width: 100%;
+}
+
+/* line 47, ../../../../../My_work/verstca/src/scss/_general.scss */
+.navbar > a {
+  color: var(--text-white);
+  padding-top: var(--bs-navbar-brand-padding-y);
+  padding-bottom: var(--bs-navbar-brand-padding-y);
+  margin-right: var(--bs-navbar-brand-margin-end);
+  font-size: var(--bs-navbar-brand-font-size);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+/*# sourceMappingURL=style.css.map */

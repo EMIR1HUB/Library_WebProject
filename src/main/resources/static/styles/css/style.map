@@ -1,0 +1,14 @@
+{
+	"version": 3,
+	"file": "style.css",
+	"sources": [
+		"../scss/style.scss",
+		"../scss/_general.scss"
+	],
+	"sourcesContent": [
+		"@import \"general\";\r\n",
+		":root {\r\n    --bg-color1: #000000f0;\r\n    --bg-color2: #6edff6;\r\n    --bg-color3: #b3404a;\r\n\r\n    --text-color1: #bac2cc;\r\n    --text-white: #ffffff;\r\n}\r\n\r\n.btn-invisible {\r\n    display: none;\r\n}\r\n\r\nbody {\r\n    background: var(--bg-color1);\r\n}\r\n\r\n.navbar {\r\n    background: var(--bg-color1);\r\n    padding-left: 10%;\r\n    padding-right: 10%;\r\n\r\n    .nav-link {\r\n        position: relative;\r\n        color: var(--text-color1);\r\n\r\n        &::before {\r\n            content: '';\r\n            position: absolute;\r\n            left: 0;\r\n            bottom: 5px;\r\n            width: 0;\r\n            height: 1.5px;\r\n            background-color: var(--text-white);\r\n            transition: width 0.35s;\r\n        }\r\n\r\n        &:hover {\r\n            color: var(--text-white);\r\n\r\n            &::before {\r\n                width: 100%;\r\n            }\r\n        }\r\n    }\r\n\r\n    &>a {\r\n        color: var(--text-white);\r\n        padding-top: var(--bs-navbar-brand-padding-y);\r\n        padding-bottom: var(--bs-navbar-brand-padding-y);\r\n        margin-right: var(--bs-navbar-brand-margin-end);\r\n        font-size: var(--bs-navbar-brand-font-size);\r\n        text-decoration: none;\r\n        white-space: nowrap;\r\n    }\r\n}"
+	],
+	"names": [],
+	"mappings": ";ACAA,AAAA,KAAK,CAAC;EACF,WAAW,CAAA,UAAC;EACZ,WAAW,CAAA,QAAC;EACZ,WAAW,CAAA,QAAC;EAEZ,aAAa,CAAA,QAAC;EACd,YAAY,CAAA,QAAC;CAChB;;;AAED,AAAA,cAAc,CAAC;EACX,OAAO,EAAE,IAAI;CAChB;;;AAED,AAAA,IAAI,CAAC;EACD,UAAU,EAAE,gBAAgB;CAC/B;;;AAED,AAAA,OAAO,CAAC;EACJ,UAAU,EAAE,gBAAgB;EAC5B,YAAY,EAAE,GAAG;EACjB,aAAa,EAAE,GAAG;CAmCrB;;;AAtCD,AAKI,OALG,CAKH,SAAS,CAAC;EACN,QAAQ,EAAE,QAAQ;EAClB,KAAK,EAAE,kBAAkB;CAoB5B;;;AA3BL,AASQ,OATD,CAKH,SAAS,AAIJ,QAAQ,CAAC;EACN,OAAO,EAAE,EAAE;EACX,QAAQ,EAAE,QAAQ;EAClB,IAAI,EAAE,CAAC;EACP,MAAM,EAAE,GAAG;EACX,KAAK,EAAE,CAAC;EACR,MAAM,EAAE,KAAK;EACb,gBAAgB,EAAE,iBAAiB;EACnC,UAAU,EAAE,WAAW;CAC1B;;;AAlBT,AAoBQ,OApBD,CAKH,SAAS,AAeJ,MAAM,CAAC;EACJ,KAAK,EAAE,iBAAiB;CAK3B;;;AA1BT,AAuBY,OAvBL,CAKH,SAAS,AAeJ,MAAM,AAGF,QAAQ,CAAC;EACN,KAAK,EAAE,IAAI;CACd;;;AAzBb,AA6BI,OA7BG,GA6BD,CAAC,CAAC;EACA,KAAK,EAAE,iBAAiB;EACxB,WAAW,EAAE,gCAAgC;EAC7C,cAAc,EAAE,gCAAgC;EAChD,YAAY,EAAE,iCAAiC;EAC/C,SAAS,EAAE,gCAAgC;EAC3C,eAAe,EAAE,IAAI;EACrB,WAAW,EAAE,MAAM;CACtB"
+}

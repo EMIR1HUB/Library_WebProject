@@ -5,10 +5,13 @@ target/
 !**/src/test/**/target/
 mvnw
 mvnw.cmd
+!**/css/style.map
 
 
 Person.java
 HibernateSessionFactoryUtil.java
+scss
+
 
 
 ### STS ###
