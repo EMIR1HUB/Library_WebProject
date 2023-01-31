@@ -2,6 +2,7 @@ package com.suleimanov.libraryproject.controllers;
 
 import com.suleimanov.libraryproject.dao.BookDAO;
 import com.suleimanov.libraryproject.dao.PersonDAO;
+import com.suleimanov.libraryproject.dao.PersonPhotoDAO;
 import com.suleimanov.libraryproject.models.BookInfo;
 import com.suleimanov.libraryproject.models.PersonInfo;
 import com.suleimanov.libraryproject.util.PersonValidator;
@@ -19,12 +20,14 @@ public class PeopleController {
     private final PersonDAO personDAO;
     private final BookDAO bookDAO;
     private final PersonValidator personValidator;
+    private final PersonPhotoDAO personPhotoDAO;
 
     @Autowired
-    public PeopleController(PersonDAO personDAO, BookDAO bookDAO, PersonValidator personValidator) {
+    public PeopleController(PersonDAO personDAO, BookDAO bookDAO, PersonValidator personValidator, PersonPhotoDAO personPhotoDAO) {
         this.personDAO = personDAO;
         this.bookDAO = bookDAO;
         this.personValidator = personValidator;
+        this.personPhotoDAO = personPhotoDAO;
     }
 
     @GetMapping()
@@ -39,6 +42,9 @@ public class PeopleController {
         model.addAttribute("person", personDAO.show(id));
         model.addAttribute("books", bookDAO.index(id));
         model.addAttribute("booksFree", bookDAO.showFreeBooks());
+        model.addAttribute("photoPath", personPhotoDAO.showPath(id));
+        System.out.println(id);
+
         return "people/show";
     }
 

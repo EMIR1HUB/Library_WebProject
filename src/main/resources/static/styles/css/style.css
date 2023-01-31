@@ -15,22 +15,23 @@
 /* line 14, ../../../../../My_work/verstca/src/scss/_general.scss */
 body {
   background: var(--bg-color1);
+  color: var(--text-white);
 }
 
-/* line 18, ../../../../../My_work/verstca/src/scss/_general.scss */
+/* line 19, ../../../../../My_work/verstca/src/scss/_general.scss */
 .navbar {
   background: var(--bg-color1);
   padding-left: 10%;
   padding-right: 10%;
 }
 
-/* line 23, ../../../../../My_work/verstca/src/scss/_general.scss */
+/* line 24, ../../../../../My_work/verstca/src/scss/_general.scss */
 .navbar .nav-link {
   position: relative;
   color: var(--text-color1);
 }
 
-/* line 27, ../../../../../My_work/verstca/src/scss/_general.scss */
+/* line 28, ../../../../../My_work/verstca/src/scss/_general.scss */
 .navbar .nav-link::before {
   content: '';
   position: absolute;
@@ -42,17 +43,17 @@ body {
   transition: width 0.35s;
 }
 
-/* line 38, ../../../../../My_work/verstca/src/scss/_general.scss */
+/* line 39, ../../../../../My_work/verstca/src/scss/_general.scss */
 .navbar .nav-link:hover {
   color: var(--text-white);
 }
 
-/* line 41, ../../../../../My_work/verstca/src/scss/_general.scss */
+/* line 42, ../../../../../My_work/verstca/src/scss/_general.scss */
 .navbar .nav-link:hover::before {
   width: 100%;
 }
 
-/* line 47, ../../../../../My_work/verstca/src/scss/_general.scss */
+/* line 48, ../../../../../My_work/verstca/src/scss/_general.scss */
 .navbar > a {
   color: var(--text-white);
   padding-top: var(--bs-navbar-brand-padding-y);
@@ -61,6 +62,24 @@ body {
   font-size: var(--bs-navbar-brand-font-size);
   text-decoration: none;
   white-space: nowrap;
+}
+
+/* line 61, ../../../../../My_work/verstca/src/scss/_general.scss */
+.col-3, .col-7 {
+  margin-top: 20px;
+}
+
+/* line 66, ../../../../../My_work/verstca/src/scss/_general.scss */
+.photo {
+  position: relative;
+}
+
+/* line 72, ../../../../../My_work/verstca/src/scss/_general.scss */
+.photo > img {
+  border: 3px solid rgba(153, 153, 153, 0.3);
+  max-width: 100%;
+  height: auto;
+  display: block;
 }
 
 /*# sourceMappingURL=style.css.map */

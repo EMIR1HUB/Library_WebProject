@@ -1,22 +1,59 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en">
 <!--  xmlns:th="http://thymleaf.org" -->
 <head>
     <meta charset="UTF-8">
     <title>Person</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" href="/styles/css/style.css">
 </head>
 <body>
 
-    <p th:text="${'Full Name: ' + person.getName() +
-        ' ' + person.getLastName() + ' ' + person.getPatronymic()}">VALUE</p>
-    <p th:text="${'Date Birth: ' + person.getDateBirth()}">VALUE</p>
-    <p th:text="${'Email: ' + person.getEmail()}">VALUE</p>
-    <p th:text="${'Phone: ' + person.getPhone()}">VALUE</p>
-
-    <!--    if person doesn't have books -->
-    <div th:if="${books.isEmpty()}">
-        <p>Человек пока не взял книги</p>
+<nav class="navbar navbar-expand-lg">
+    <a href="#">
+        <img src="/img/icon.png" alt="Logo" width="40" height="40" class="d-inline-block"> Bootstrap
+    </a>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="../books">Каталог</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="../people">Читатели</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">FAQ</a>
+            </li>
+        </ul>
+        <form class="d-flex" role="search">
+            <input class="form-control me-2" type="search" placeholder="Поиск по книгам" aria-label="Search">
+            <button class="btn" type="submit"></button>
+        </form>
     </div>
+</nav>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-3 photo">
+            <img th:if="${photoPath.isEmpty()}" src="/img/person_avatar/defolt.png">
+            <img th:if="${photoPath.isPresent()}" th:src="@{${'/img/person_avatar/' + photoPath.get().getPathToThePhoto()}}">
+        </div>
+        <div class="col-7">
+            <p th:text="${'Full Name: ' + person.getName() +
+                ' ' + person.getLastName() + ' ' + person.getPatronymic()}">Full Name</p>
+            <p th:text="${'Date Birth: ' + person.getDateBirth()}">Date Birth</p>
+            <p th:text="${'Email: ' + person.getEmail()}">Email</p>
+            <p th:text="${'Phone: ' + person.getPhone()}">Phone</p>
+
+            <!--    if person doesn't have books -->
+            <div th:if="${books.isEmpty()}">
+                <p>Человек пока не взял книги</p>
+            </div>
+        </div>
+    </div>
+
 
     <!--    if person has books -->
     <div th:if="${!books.isEmpty()}">
@@ -32,7 +69,8 @@
         <form action="#" th:method="PATCH" th:action="@{/people/{id}/assign(id=${person.getId()})}">
             <label for="book">Выбрать книгу: </label>
             <select th:object="${book}" th:field="*{id}" id="book">
-                <option th:each="book : ${booksFree}" th:value="${book.getId()}" th:text="${book.getName()}"></option>
+                <option th:each="book : ${booksFree}" th:value="${book.getId()}" th:text="${book.getName()}">
+                </option>
             </select>
             <input type="submit" value="Назначить книгу">
         </form>
@@ -44,11 +82,16 @@
     <hr>
 
 
-
     <a th:href="@{/people/{id}/edit(id=${person.getId()})}">Редактировать</a>
 
     <form th:method="DELETE" th:action="@{/people/{id}(id=${person.getId()})}">
         <input type="submit" value="Удалить"/>
     </form>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
 </body>
 </html>
