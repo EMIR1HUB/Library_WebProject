@@ -3,40 +3,86 @@
 <head>
     <meta charset="UTF-8">
     <title>Update Book</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" href="/styles/css/style.css">
 </head>
 <body>
-<form th:method="PATCH" th:action="@{/people/{id}(id=${person.getId()})}" th:object="${person}">
-    <label for="name">Имя: </label>
-    <input type="text" th:field="*{name}" id="name">
-    <div style="color:red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</div>
-    <br/>
 
-    <label for="lastname">Фамилию: </label>
-    <input type="text" th:field="*{lastName}" id="lastname">
-    <div style="color:red" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">Name Error</div>
-    <br/>
+<nav class="navbar navbar-expand-lg">
+    <a href="../">
+        <img src="/icon.png" alt="Logo" width="40" height="40" class="d-inline-block"> Bootstrap
+    </a>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="../../../books">Каталог</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="../../people">Читатели</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">FAQ</a>
+            </li>
+        </ul>
+        <form class="d-flex" role="search">
+            <input class="form-control me-2" type="search" placeholder="Поиск по книгам" aria-label="Search">
+            <button class="btn" type="submit"></button>
+        </form>
+    </div>
+</nav>
 
-    <label for="patronymic">Отчество: </label>
-    <input type="text" th:field="*{patronymic}" id="patronymic">
-    <div style="color:red" th:if="${#fields.hasErrors('patronymic')}" th:errors="*{patronymic}">Name Error</div>
-    <br/>
+<div class="container">
+    <form class="change_data" th:method="PATCH" th:action="@{/people/{id}(id=${person.getId()})}" enctype="multipart/form-data"
+          th:object="${person}">
+        <div class="form-inner">
+            <h3>Редактирование</h3>
 
-    <label for="date_birth">Год рождения: </label>
-    <input type="text" th:field="*{dateBirth}" id="date_birth">
-    <div style="color:red" th:if="${#fields.hasErrors('dateBirth')}" th:errors="*{dateBirth}">Name Error</div>
-    <br/>
+            <label class="input-file" >Фото:
+                <input type="file" name="file"
+                       multiple accept="image/*,image/jpeg">
+                <span>Выберите картинку</span>
+            </label>
 
-    <label for="email">Email: </label>
-    <input type="text" th:field="*{email}" id="email">
-    <div style="color:red" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Name Error</div>
-    <br/>
+            <label for="name">Имя: </label>
+            <input type="text" th:field="*{name}" id="name">
+            <div style="color:red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</div>
 
-    <label for="phone">Номер телефона: </label>
-    <input type="text" th:field="*{phone}" id="phone">
-    <div style="color:red" th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}">Name Error</div>
-    <br/>
+            <label for="lastname">Фамилию: </label>
+            <input type="text" th:field="*{lastName}" id="lastname">
+            <div style="color:red" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">Name Error</div>
 
-    <input type="submit" value="Редактировать">
-</form>
+            <label for="patronymic">Отчество: </label>
+            <input type="text" th:field="*{patronymic}" id="patronymic">
+            <div style="color:red" th:if="${#fields.hasErrors('patronymic')}" th:errors="*{patronymic}">Name Error</div>
+
+            <label for="date_birth">Год рождения: </label>
+            <input type="text" th:field="*{dateBirth}" id="date_birth">
+            <div style="color:red" th:if="${#fields.hasErrors('dateBirth')}" th:errors="*{dateBirth}">Name Error</div>
+
+            <label for="email">Email: </label>
+            <input type="text" th:field="*{email}" id="email">
+            <div style="color:red" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Name Error</div>
+
+            <label for="phone">Номер телефона: </label>
+            <input type="text" th:field="*{phone}" id="phone">
+            <div style="color:red" th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}">Name Error</div>
+            <br/>
+            <input type="submit" value="Редактировать">
+        </div>
+    </form>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
+<script src="https://snipp.ru/cdn/jquery/2.1.1/jquery.min.js"></script>
+<script>
+    $('.input-file input[type=file]').on('change', function () {
+        let file = this.files[0];
+        $(this).next().html(file.name);
+    });
+</script>
 </body>
 </html>

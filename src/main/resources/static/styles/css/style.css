@@ -1,37 +1,40 @@
+@charset "UTF-8";
 /* line 1, ../../../../../My_work/verstca/src/scss/_general.scss */
 :root {
   --bg-color1: #000000f0;
-  --bg-color2: #6edff6;
+  --bg-color2: rgba(255, 255, 255, 0.7);
+  --bg-color2-3: rgba(255, 255, 255, 0.3);
+  --bg-color33: #6edff6;
   --bg-color3: #b3404a;
   --text-color1: #bac2cc;
   --text-white: #ffffff;
 }
 
-/* line 10, ../../../../../My_work/verstca/src/scss/_general.scss */
+/* line 13, ../../../../../My_work/verstca/src/scss/_general.scss */
 .btn-invisible {
   display: none;
 }
 
-/* line 14, ../../../../../My_work/verstca/src/scss/_general.scss */
+/* line 17, ../../../../../My_work/verstca/src/scss/_general.scss */
 body {
   background: var(--bg-color1);
   color: var(--text-white);
 }
 
-/* line 19, ../../../../../My_work/verstca/src/scss/_general.scss */
+/* line 22, ../../../../../My_work/verstca/src/scss/_general.scss */
 .navbar {
   background: var(--bg-color1);
   padding-left: 10%;
   padding-right: 10%;
 }
 
-/* line 24, ../../../../../My_work/verstca/src/scss/_general.scss */
+/* line 27, ../../../../../My_work/verstca/src/scss/_general.scss */
 .navbar .nav-link {
   position: relative;
   color: var(--text-color1);
 }
 
-/* line 28, ../../../../../My_work/verstca/src/scss/_general.scss */
+/* line 31, ../../../../../My_work/verstca/src/scss/_general.scss */
 .navbar .nav-link::before {
   content: '';
   position: absolute;
@@ -43,17 +46,17 @@ body {
   transition: width 0.35s;
 }
 
-/* line 39, ../../../../../My_work/verstca/src/scss/_general.scss */
+/* line 42, ../../../../../My_work/verstca/src/scss/_general.scss */
 .navbar .nav-link:hover {
   color: var(--text-white);
 }
 
-/* line 42, ../../../../../My_work/verstca/src/scss/_general.scss */
+/* line 45, ../../../../../My_work/verstca/src/scss/_general.scss */
 .navbar .nav-link:hover::before {
   width: 100%;
 }
 
-/* line 48, ../../../../../My_work/verstca/src/scss/_general.scss */
+/* line 51, ../../../../../My_work/verstca/src/scss/_general.scss */
 .navbar > a {
   color: var(--text-white);
   padding-top: var(--bs-navbar-brand-padding-y);
@@ -64,22 +67,143 @@ body {
   white-space: nowrap;
 }
 
-/* line 61, ../../../../../My_work/verstca/src/scss/_general.scss */
+/* line 65, ../../../../../My_work/verstca/src/scss/_general.scss */
 .col-3, .col-7 {
   margin-top: 20px;
 }
 
-/* line 66, ../../../../../My_work/verstca/src/scss/_general.scss */
+/* line 71, ../../../../../My_work/verstca/src/scss/_general.scss */
 .photo {
   position: relative;
 }
 
-/* line 72, ../../../../../My_work/verstca/src/scss/_general.scss */
+/* line 74, ../../../../../My_work/verstca/src/scss/_general.scss */
 .photo > img {
   border: 3px solid rgba(153, 153, 153, 0.3);
   max-width: 100%;
   height: auto;
   display: block;
+}
+
+/* line 82, ../../../../../My_work/verstca/src/scss/_general.scss */
+.change_data {
+  position: relative;
+  padding: 0 50px;
+  margin: 50px auto 0;
+  background-size: cover;
+}
+
+/* line 89, ../../../../../My_work/verstca/src/scss/_general.scss */
+.form-inner {
+  position: relative;
+}
+
+/* line 92, ../../../../../My_work/verstca/src/scss/_general.scss */
+.form-inner h3 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  color: white;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  font-size: 26px;
+  text-transform: uppercase;
+}
+
+/* line 102, ../../../../../My_work/verstca/src/scss/_general.scss */
+.form-inner label {
+  display: block;
+  margin-top: 15px;
+  padding-left: 15px;
+  font-family: 'Roboto', sans-serif;
+  color: var(--bg-color2);
+  text-transform: uppercase;
+  font-size: 14px;
+}
+
+/* line 112, ../../../../../My_work/verstca/src/scss/_general.scss */
+.form-inner .error {
+  display: block;
+  padding-left: 15px;
+  font-family: 'Roboto', sans-serif;
+  color: red;
+  font-size: 14px;
+  transition: 0.3s linear;
+  /* Время изменения */
+}
+
+/* line 122, ../../../../../My_work/verstca/src/scss/_general.scss */
+.form-inner input {
+  display: block;
+  width: 40%;
+  padding: 0 15px;
+  margin: 10px 0 15px;
+  border-width: 0;
+  line-height: 40px;
+  border-radius: 20px;
+  color: white;
+  background: var(--bg-color2-3);
+  font-family: 'Roboto', sans-serif;
+  outline: none;
+}
+
+/* line 135, ../../../../../My_work/verstca/src/scss/_general.scss */
+.form-inner input[type="submit"] {
+  background: var(--bg-color3);
+  transition: 0.4s linear;
+  /* Время изменения */
+}
+
+/* line 140, ../../../../../My_work/verstca/src/scss/_general.scss */
+.form-inner input[type="submit"]:hover {
+  box-shadow: 0px 0px 6px var(--text-white);
+}
+
+/* line 146, ../../../../../My_work/verstca/src/scss/_general.scss */
+.form-inner .input-file {
+  position: relative;
+  display: inline-block;
+}
+
+/* line 149, ../../../../../My_work/verstca/src/scss/_general.scss */
+.form-inner .input-file span {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  outline: none;
+  text-decoration: none;
+  font-size: 14px;
+  vertical-align: middle;
+  color: var(--text-white);
+  text-align: center;
+  border-radius: 10px;
+  background-color: #419152;
+  line-height: 22px;
+  height: 40px;
+  padding: 10px 20px;
+  box-sizing: border-box;
+  border: none;
+  margin: 0;
+  transition: background-color 0.2s;
+}
+
+/* line 169, ../../../../../My_work/verstca/src/scss/_general.scss */
+.form-inner .input-file input[type=file] {
+  position: absolute;
+  z-index: -1;
+  opacity: 0;
+  display: block;
+  width: 0;
+  height: 0;
+}
+
+/* line 177, ../../../../../My_work/verstca/src/scss/_general.scss */
+.form-inner .input-file:hover span {
+  background-color: #59be6e;
+}
+
+/* line 180, ../../../../../My_work/verstca/src/scss/_general.scss */
+.form-inner .input-file:active span {
+  background-color: #2E703A;
 }
 
 /*# sourceMappingURL=style.css.map */

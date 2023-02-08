@@ -12,7 +12,7 @@
 
 <nav class="navbar navbar-expand-lg">
     <a href="#">
-        <img src="/img/icon.png" alt="Logo" width="40" height="40" class="d-inline-block"> Bootstrap
+        <img src="/icon.png" alt="Logo" width="40" height="40" class="d-inline-block"> Bootstrap
     </a>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -37,8 +37,8 @@
 <div class="container">
     <div class="row">
         <div class="col-3 photo">
-            <img th:if="${photoPath.isEmpty()}" src="/img/person_avatar/defolt.png">
-            <img th:if="${photoPath.isPresent()}" th:src="@{${'/img/person_avatar/' + photoPath.get().getPathToThePhoto()}}">
+            <img th:if="${photoPath.isEmpty()}" src="/defolt/avatar.png">
+            <img th:if="${photoPath.isPresent()}" th:src="@{${'/img/' + photoPath.get().getPathToThePhoto()}}">
         </div>
         <div class="col-7">
             <p th:text="${'Full Name: ' + person.getName() +

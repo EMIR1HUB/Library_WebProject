@@ -5,13 +5,20 @@ import com.suleimanov.libraryproject.dao.PersonDAO;
 import com.suleimanov.libraryproject.dao.PersonPhotoDAO;
 import com.suleimanov.libraryproject.models.BookInfo;
 import com.suleimanov.libraryproject.models.PersonInfo;
+import com.suleimanov.libraryproject.models.PersonPhotoInfo;
 import com.suleimanov.libraryproject.util.PersonValidator;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.UUID;
 
 @Controller
 @RequestMapping("/people")
@@ -21,6 +28,9 @@ public class PeopleController {
     private final BookDAO bookDAO;
     private final PersonValidator personValidator;
     private final PersonPhotoDAO personPhotoDAO;
+
+    @Value("${upload.path}")
+    private String uploadPath;
 
     @Autowired
     public PeopleController(PersonDAO personDAO, BookDAO bookDAO, PersonValidator personValidator, PersonPhotoDAO personPhotoDAO) {
@@ -43,7 +53,6 @@ public class PeopleController {
         model.addAttribute("books", bookDAO.index(id));
         model.addAttribute("booksFree", bookDAO.showFreeBooks());
         model.addAttribute("photoPath", personPhotoDAO.showPath(id));
-        System.out.println(id);
 
         return "people/show";
     }
@@ -54,11 +63,26 @@ public class PeopleController {
     }
 
     @PostMapping()
-    public String create(@ModelAttribute("person") @Valid PersonInfo personInfo, BindingResult bindingResult) {
+    public String create(@ModelAttribute("person") @Valid PersonInfo personInfo,
+                         BindingResult bindingResult, @RequestParam("file") MultipartFile file) throws IOException {
         personValidator.validate(personInfo, bindingResult);    // проверка на одинаковый email
-
         if (bindingResult.hasErrors()) return "people/new";
         personDAO.save(personInfo);
+
+//        PersonPhotoInfo personPhotoInfo = new PersonPhotoInfo();
+
+        // если фото было отправленно, то сохраняем его в директории
+        if (!file.isEmpty()) {
+            File uploadDir = new File(uploadPath);
+            if (!uploadDir.exists())    // если пути не существует
+                uploadDir.mkdir();
+
+            String resultFileName = UUID.randomUUID().toString() + "." + file.getOriginalFilename();
+            file.transferTo(new File(uploadPath + "/" + resultFileName));
+
+            personPhotoDAO.save(resultFileName);
+//            personPhotoInfo.setPathToThePhoto(resultFileName);
+        }
         return "redirect:/people";
     }
 
@@ -70,12 +94,30 @@ public class PeopleController {
 
     @PatchMapping("/{id}")
     public String update(@ModelAttribute("person") @Valid PersonInfo personInfo,
-                         BindingResult bindingResult, @PathVariable("id") Long id) {
+                         BindingResult bindingResult, @PathVariable("id") Long id,
+                         @RequestParam("file") MultipartFile file) throws IOException {
         personValidator.validate(personInfo, bindingResult);    // проверка на одинаковый email
-
         if (bindingResult.hasErrors()) return "people/edit";
         personDAO.update(id, personInfo);
-        return "redirect:/people";
+
+        System.out.println("file " + file.getOriginalFilename());
+        if (!file.isEmpty()) {
+            File uploadDir = new File(uploadPath);
+            if (!uploadDir.exists())    // если пути не существует
+                uploadDir.mkdir();
+
+            String resultFileName = UUID.randomUUID().toString() + "." + file.getOriginalFilename();
+            File fullPatchFile = new File(uploadPath + "/" + resultFileName);
+            file.transferTo(fullPatchFile);
+
+            // удаляем из директории старый файл
+            File f = new File(uploadPath + "/" + personPhotoDAO.showPath(id).get().getPathToThePhoto());
+            f.delete();
+
+            personPhotoDAO.update(id, resultFileName);
+        }
+
+        return "redirect:/people/" + id;
     }
 
     @DeleteMapping("/{id}")
@@ -85,7 +127,7 @@ public class PeopleController {
     }
 
     @PatchMapping("/{id}/assign")
-    public String assign(@PathVariable("id") Long person_id, @RequestParam(value = "id") Long book_id){
+    public String assign(@PathVariable("id") Long person_id, @RequestParam(value = "id") Long book_id) {
         bookDAO.assign(book_id, person_id);
         return "redirect:/people/" + person_id;
     }
