@@ -4,37 +4,39 @@
   --bg-color1: #000000f0;
   --bg-color2: rgba(255, 255, 255, 0.7);
   --bg-color2-3: rgba(255, 255, 255, 0.3);
+  --bg-color4: #ededed;
   --bg-color33: #6edff6;
   --bg-color3: #b3404a;
+  --bg-color-btn: #1b8755;
   --text-color1: #bac2cc;
   --text-white: #ffffff;
 }
 
-/* line 13, ../../../../../My_work/verstca/src/scss/_general.scss */
+/* line 15, ../../../../../My_work/verstca/src/scss/_general.scss */
 .btn-invisible {
   display: none;
 }
 
-/* line 17, ../../../../../My_work/verstca/src/scss/_general.scss */
+/* line 19, ../../../../../My_work/verstca/src/scss/_general.scss */
 body {
   background: var(--bg-color1);
   color: var(--text-white);
 }
 
-/* line 22, ../../../../../My_work/verstca/src/scss/_general.scss */
+/* line 24, ../../../../../My_work/verstca/src/scss/_general.scss */
 .navbar {
   background: var(--bg-color1);
   padding-left: 10%;
   padding-right: 10%;
 }
 
-/* line 27, ../../../../../My_work/verstca/src/scss/_general.scss */
+/* line 29, ../../../../../My_work/verstca/src/scss/_general.scss */
 .navbar .nav-link {
   position: relative;
   color: var(--text-color1);
 }
 
-/* line 31, ../../../../../My_work/verstca/src/scss/_general.scss */
+/* line 33, ../../../../../My_work/verstca/src/scss/_general.scss */
 .navbar .nav-link::before {
   content: '';
   position: absolute;
@@ -46,17 +48,17 @@ body {
   transition: width 0.35s;
 }
 
-/* line 42, ../../../../../My_work/verstca/src/scss/_general.scss */
+/* line 44, ../../../../../My_work/verstca/src/scss/_general.scss */
 .navbar .nav-link:hover {
   color: var(--text-white);
 }
 
-/* line 45, ../../../../../My_work/verstca/src/scss/_general.scss */
+/* line 47, ../../../../../My_work/verstca/src/scss/_general.scss */
 .navbar .nav-link:hover::before {
   width: 100%;
 }
 
-/* line 51, ../../../../../My_work/verstca/src/scss/_general.scss */
+/* line 53, ../../../../../My_work/verstca/src/scss/_general.scss */
 .navbar > a {
   color: var(--text-white);
   padding-top: var(--bs-navbar-brand-padding-y);
@@ -67,17 +69,17 @@ body {
   white-space: nowrap;
 }
 
-/* line 65, ../../../../../My_work/verstca/src/scss/_general.scss */
+/* line 67, ../../../../../My_work/verstca/src/scss/_general.scss */
 .col-3, .col-7 {
   margin-top: 20px;
 }
 
-/* line 71, ../../../../../My_work/verstca/src/scss/_general.scss */
+/* line 73, ../../../../../My_work/verstca/src/scss/_general.scss */
 .photo {
   position: relative;
 }
 
-/* line 74, ../../../../../My_work/verstca/src/scss/_general.scss */
+/* line 76, ../../../../../My_work/verstca/src/scss/_general.scss */
 .photo > img {
   border: 3px solid rgba(153, 153, 153, 0.3);
   max-width: 100%;
@@ -85,7 +87,7 @@ body {
   display: block;
 }
 
-/* line 82, ../../../../../My_work/verstca/src/scss/_general.scss */
+/* line 84, ../../../../../My_work/verstca/src/scss/_general.scss */
 .change_data {
   position: relative;
   padding: 0 50px;
@@ -93,12 +95,12 @@ body {
   background-size: cover;
 }
 
-/* line 89, ../../../../../My_work/verstca/src/scss/_general.scss */
+/* line 91, ../../../../../My_work/verstca/src/scss/_general.scss */
 .form-inner {
   position: relative;
 }
 
-/* line 92, ../../../../../My_work/verstca/src/scss/_general.scss */
+/* line 94, ../../../../../My_work/verstca/src/scss/_general.scss */
 .form-inner h3 {
   margin-top: 0;
   margin-bottom: 1rem;
@@ -109,7 +111,7 @@ body {
   text-transform: uppercase;
 }
 
-/* line 102, ../../../../../My_work/verstca/src/scss/_general.scss */
+/* line 104, ../../../../../My_work/verstca/src/scss/_general.scss */
 .form-inner label {
   display: block;
   margin-top: 15px;
@@ -120,7 +122,7 @@ body {
   font-size: 14px;
 }
 
-/* line 112, ../../../../../My_work/verstca/src/scss/_general.scss */
+/* line 114, ../../../../../My_work/verstca/src/scss/_general.scss */
 .form-inner .error {
   display: block;
   padding-left: 15px;
@@ -131,7 +133,7 @@ body {
   /* Время изменения */
 }
 
-/* line 122, ../../../../../My_work/verstca/src/scss/_general.scss */
+/* line 124, ../../../../../My_work/verstca/src/scss/_general.scss */
 .form-inner input {
   display: block;
   width: 40%;
@@ -146,25 +148,25 @@ body {
   outline: none;
 }
 
-/* line 135, ../../../../../My_work/verstca/src/scss/_general.scss */
+/* line 137, ../../../../../My_work/verstca/src/scss/_general.scss */
 .form-inner input[type="submit"] {
   background: var(--bg-color3);
   transition: 0.4s linear;
   /* Время изменения */
 }
 
-/* line 140, ../../../../../My_work/verstca/src/scss/_general.scss */
+/* line 142, ../../../../../My_work/verstca/src/scss/_general.scss */
 .form-inner input[type="submit"]:hover {
   box-shadow: 0px 0px 6px var(--text-white);
 }
 
-/* line 146, ../../../../../My_work/verstca/src/scss/_general.scss */
+/* line 148, ../../../../../My_work/verstca/src/scss/_general.scss */
 .form-inner .input-file {
   position: relative;
   display: inline-block;
 }
 
-/* line 149, ../../../../../My_work/verstca/src/scss/_general.scss */
+/* line 152, ../../../../../My_work/verstca/src/scss/_general.scss */
 .form-inner .input-file span {
   position: relative;
   display: inline-block;
@@ -186,7 +188,7 @@ body {
   transition: background-color 0.2s;
 }
 
-/* line 169, ../../../../../My_work/verstca/src/scss/_general.scss */
+/* line 173, ../../../../../My_work/verstca/src/scss/_general.scss */
 .form-inner .input-file input[type=file] {
   position: absolute;
   z-index: -1;
@@ -196,14 +198,114 @@ body {
   height: 0;
 }
 
-/* line 177, ../../../../../My_work/verstca/src/scss/_general.scss */
+/* line 182, ../../../../../My_work/verstca/src/scss/_general.scss */
 .form-inner .input-file:hover span {
   background-color: #59be6e;
 }
 
-/* line 180, ../../../../../My_work/verstca/src/scss/_general.scss */
+/* line 186, ../../../../../My_work/verstca/src/scss/_general.scss */
 .form-inner .input-file:active span {
   background-color: #2E703A;
+}
+
+/* line 193, ../../../../../My_work/verstca/src/scss/_general.scss */
+.mybox {
+  position: relative;
+  display: inline-block;
+  margin-left: 10px;
+}
+
+/* line 198, ../../../../../My_work/verstca/src/scss/_general.scss */
+.mybox select {
+  display: inline-block;
+  height: 30px;
+  width: 150px;
+  outline: none;
+  color: var(--bg-color1);
+  border: 1px solid var(--bg-color2-3);
+  border-radius: 5px;
+  box-shadow: 1px 1px 2px var(--bg-color2);
+  background: var(--bg-color4);
+}
+
+/* line 210, ../../../../../My_work/verstca/src/scss/_general.scss */
+.mybox .myarrow {
+  width: 23px;
+  height: 28px;
+  position: absolute;
+  display: inline-block;
+  top: 1px;
+  right: 3px;
+  background: url("/arrow.png") right/50% no-repeat var(--bg-color4);
+  pointer-events: none;
+}
+
+/* line 223, ../../../../../My_work/verstca/src/scss/_general.scss */
+input {
+  padding: 0 15px;
+  margin: 8px 15px;
+  border-width: 0;
+  line-height: 40px;
+  border-radius: 20px;
+  color: white;
+  background: var(--bg-color2-3);
+  font-family: 'Roboto', sans-serif;
+  outline: none;
+}
+
+/* line 234, ../../../../../My_work/verstca/src/scss/_general.scss */
+input[type="submit"] {
+  background: var(--bg-color-btn);
+  transition: 0.4s linear;
+  /* Время изменения */
+}
+
+/* line 239, ../../../../../My_work/verstca/src/scss/_general.scss */
+input[type="submit"]:hover {
+  box-shadow: 0px 0px 6px var(--text-white);
+}
+
+/* line 245, ../../../../../My_work/verstca/src/scss/_general.scss */
+.row_new {
+  align-items: center;
+}
+
+/* line 248, ../../../../../My_work/verstca/src/scss/_general.scss */
+.row_new a {
+  text-decoration: none;
+  padding: 0 15px;
+  margin: 8px 15px;
+  border-width: 0;
+  line-height: 40px;
+  border-radius: 20px;
+  color: white;
+  background: var(--bg-color2-3);
+  font-family: 'Roboto', sans-serif;
+  cursor: pointer;
+  background: var(--bg-color-btn);
+  transition: background-color 0.2s;
+}
+
+/* line 261, ../../../../../My_work/verstca/src/scss/_general.scss */
+.row_new a:hover {
+  background-color: #4bb961;
+}
+
+/* line 265, ../../../../../My_work/verstca/src/scss/_general.scss */
+.row_new input {
+  background: var(--bg-color3);
+}
+
+/* line 268, ../../../../../My_work/verstca/src/scss/_general.scss */
+.row_new table {
+  margin: 20px 100px 0 0;
+  border-right: 2px solid var(--text-color1);
+}
+
+/* line 270, ../../../../../My_work/verstca/src/scss/_general.scss */
+.row_new table a {
+  margin: 0;
+  background: 0;
 }
 
 /*# sourceMappingURL=style.css.map */

@@ -1,6 +1,7 @@
 package com.suleimanov.libraryproject.controllers;
 
 import com.suleimanov.libraryproject.dao.BookDAO;
+import com.suleimanov.libraryproject.dao.BookPhotoDAO;
 import com.suleimanov.libraryproject.dao.PersonDAO;
 import com.suleimanov.libraryproject.models.BookInfo;
 import com.suleimanov.libraryproject.models.PersonInfo;
@@ -19,10 +20,13 @@ public class BookController {
     private final BookDAO bookDAO;
     private final PersonDAO personDAO;
 
+    private final BookPhotoDAO bookPhotoDAO;
+
     @Autowired
-    public BookController(BookDAO bookDAO, PersonDAO personDAO) {
+    public BookController(BookDAO bookDAO, PersonDAO personDAO, BookPhotoDAO bookPhotoDAO) {
         this.bookDAO = bookDAO;
         this.personDAO = personDAO;
+        this.bookPhotoDAO = bookPhotoDAO;
     }
 
     @GetMapping()

@@ -38,12 +38,14 @@
         <th>Name</th>
         <th>Author</th>
         <th>Year</th>
+        <th>Photo</th>
     </tr>
     <tr th:each="book : ${books}">
         <td th:utext="${book.getId()}">id</td>
         <td><a th:href="@{/books/{id}(id=${book.getId()})}" th:text="${book.getName()}">name</a></td>
         <td><a th:href="@{/books/{id}(id=${book.getId()})}" th:text="${book.getAuthor()}">author</a></td>
         <td th:utext="${book.getYear()}">year</td>
+        <td><img th:src="@{${'/img/books/' +  book.getPathFileName()}}"></td>
     </tr>
 </table>
 

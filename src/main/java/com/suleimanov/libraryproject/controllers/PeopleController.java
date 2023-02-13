@@ -107,16 +107,13 @@ public class PeopleController {
                 uploadDir.mkdir();
 
             String resultFileName = UUID.randomUUID().toString() + "." + file.getOriginalFilename();
-            File fullPatchFile = new File(uploadPath + "/" + resultFileName);
-            file.transferTo(fullPatchFile);
+            file.transferTo(new File(uploadPath + "/" + resultFileName));
 
             // удаляем из директории старый файл
-            File f = new File(uploadPath + "/" + personPhotoDAO.showPath(id).get().getPathToThePhoto());
-            f.delete();
+            new File(uploadPath + "/" + personPhotoDAO.showPath(id).get().getPathToThePhoto()).delete();
 
             personPhotoDAO.update(id, resultFileName);
         }
-
         return "redirect:/people/" + id;
     }
 
