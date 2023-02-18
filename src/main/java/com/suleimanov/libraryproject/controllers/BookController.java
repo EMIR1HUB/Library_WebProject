@@ -39,9 +39,9 @@ public class BookController {
     public String show(@PathVariable("id") Long id, Model model,
                        @ModelAttribute("person") PersonInfo person){
         model.addAttribute("book", bookDAO.show(id));
+        model.addAttribute("bookPatch", bookPhotoDAO.showPath(id));
 
         Optional<PersonInfo> bookOwner = bookDAO.getBookOwner(id);
-
         if(bookOwner.isPresent())
             model.addAttribute("owner", bookOwner.get());
         else

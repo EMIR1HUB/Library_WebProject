@@ -20,7 +20,8 @@ public class BookDAO {
     }
 
     public List<BookInfo> index() {
-        String SQL = "SELECT * FROM book LEFT JOIN book_photo bp on book.id = bp.book_id;";
+        String SQL = "SELECT book.id, person_id, name, author, year, path_file_name " +
+                "FROM book LEFT JOIN book_photo bp on book.id = bp.book_id";
         return jdbcTemplate.query(SQL, new BeanPropertyRowMapper<>(BookInfo.class));
     }
 

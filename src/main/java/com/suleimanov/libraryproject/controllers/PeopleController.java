@@ -110,9 +110,13 @@ public class PeopleController {
             file.transferTo(new File(uploadPath + "/" + resultFileName));
 
             // удаляем из директории старый файл
-            new File(uploadPath + "/" + personPhotoDAO.showPath(id).get().getPathToThePhoto()).delete();
-
-            personPhotoDAO.update(id, resultFileName);
+            if (personPhotoDAO.showPath(id).isPresent()) {
+                new File(uploadPath + "/" + personPhotoDAO.showPath(id).get().getPathToThePhoto()).delete();
+            }
+            if(personPhotoDAO.showPath(id).isEmpty())   // если нужно установить фото
+                personPhotoDAO.save(id, resultFileName);
+            if(personPhotoDAO.showPath(id).isPresent()) // если нужно обновить старое фото
+                personPhotoDAO.update(id, resultFileName);
         }
         return "redirect:/people/" + id;
     }

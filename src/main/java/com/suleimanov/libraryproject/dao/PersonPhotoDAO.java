@@ -23,6 +23,11 @@ public class PersonPhotoDAO {
         return jdbcTemplate.query(SQL, new Object[]{id}, new BeanPropertyRowMapper<>(PersonPhotoInfo.class)).stream().findAny();
     }
 
+    public void save(Long id, String fileName){
+        String SQL = "INSERT INTO person_photo(person_id, path_to_the_photo) VALUES (?, ?)";
+        jdbcTemplate.update(SQL, id, fileName);
+    }
+
     public void save(String fileName){
         String SQL = "INSERT INTO person_photo(person_id, path_to_the_photo) VALUES (?, ?)";
         jdbcTemplate.update(SQL, getLastId().getId(), fileName);
