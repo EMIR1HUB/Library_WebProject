@@ -3,17 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <title>Book</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" href="/styles/css/style.css">
 </head>
 <body>
 
-    <p th:text="${book.getName() + ', ' + book.getAuthor() + ', ' + book.getYear()}">book</p>
+<nav class="navbar navbar-expand-lg">
+    <a href="#">
+        <img src="/icon.png" alt="Logo" width="40" height="40" class="d-inline-block"> BookBay
+    </a>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="../books">Каталог</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="../people">Читатели</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">FAQ</a>
+            </li>
+        </ul>
+        <form class="d-flex" role="search">
+            <input class="form-control me-2" type="search" placeholder="Поиск по книгам" aria-label="Search">
+            <button class="btn" type="submit"></button>
+        </form>
+    </div>
+</nav>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-3 photo">
+            <img th:if="${bookPatch.isEmpty()}" src="/defolt/empty.png">
+            <img th:if="${bookPatch.isPresent()}" th:src="@{${'/img/books/' + bookPatch.get().getPathFileName()}}">
+        </div>
+        <div class="col-7">
+            <p th:text="${'Название: ' + book.getName()}">Name</p>
+            <p th:text="${'Автор: ' + book.getAuthor()}">Author</p>
+            <p th:text="${'Дата: ' + book.getYear() + ' г.'}">Date</p>
+
+        </div>
+    </div>
+
+    <hr/>
 
     <!--  if book doesn't free  -->
-    <div th:if="${owner}">
-        <span th:text="${'Книга сейчас у: ' + owner.getFullName()}">person</span>
-        <form th:method="PATCH" th:action="@{/books/{id}/release(id=${book.getId()})}">
-            <input type="submit" value="Освободить книгу">
-        </form>
+    <div class="row align-items-baseline fix" th:if="${owner}">
+        <div class="col-3">
+            <p th:text="${'Книга сейчас у: ' + owner.getFullName()}">person</p>
+        </div>
+        <div class="col-3">
+            <form th:method="PATCH" th:action="@{/books/{id}/release(id=${book.getId()})}">
+                <input type="submit" value="Освободить книгу">
+            </form>
+        </div>
     </div>
 
     <!--  if book free  -->
@@ -21,20 +66,29 @@
         <span>Эта книга свободна. Кому назанчить ее?</span>
         <form th:method="PATCH" th:action="@{/books/{id}/assign(id=${book.getId()})}">
             <label for="person">Выберите человека: </label>
-            <select th:object="${person}" th:field="*{id}" id="person">
-                <option th:each="person : ${people}" th:value="${person.getId()}" th:text="${person.getFullName()}"></option>
-            </select>
+            <div class="mybox">
+                <span class="myarrow"></span>
+                <select th:object="${person}" th:field="*{id}" id="person">
+                    <option th:each="person : ${people}" th:value="${person.getId()}" th:text="${person.getFullName()}">
+                    </option>
+                </select>
+            </div>
             <input type="submit" value="Назначить книгу">
         </form>
     </div>
 
-    <hr><br>
+    <hr/>
 
-    <a th:href="@{/books/{id}/edit(id=${person.getId()})}">Редактировать</a>
+    <div class="row row_new text-center">
+        <a class="col-2" th:href="@{/books/{id}/edit(id=${person.getId()})}">Редактировать</a>
+        <form class="col-2" th:method="DELETE" th:action="@{/books/{id}(id=${person.getId()})}">
+            <input type="submit" value="Удалить" />
+        </form>
+    </div>
+</div>
 
-    <form th:method="DELETE" th:action="@{/books/{id}(id=${person.getId()})}">
-        <input type="submit" value="Удалить"/>
-    </form>
-
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
 </body>
 </html>

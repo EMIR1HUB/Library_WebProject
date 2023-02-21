@@ -107,16 +107,17 @@ public class PeopleController {
                 uploadDir.mkdir();
 
             String resultFileName = UUID.randomUUID().toString() + "." + file.getOriginalFilename();
-            File fullPatchFile = new File(uploadPath + "/" + resultFileName);
-            file.transferTo(fullPatchFile);
+            file.transferTo(new File(uploadPath + "/" + resultFileName));
 
             // удаляем из директории старый файл
-            File f = new File(uploadPath + "/" + personPhotoDAO.showPath(id).get().getPathToThePhoto());
-            f.delete();
-
-            personPhotoDAO.update(id, resultFileName);
+            if (personPhotoDAO.showPath(id).isPresent()) {
+                new File(uploadPath + "/" + personPhotoDAO.showPath(id).get().getPathToThePhoto()).delete();
+            }
+            if(personPhotoDAO.showPath(id).isEmpty())   // если нужно установить фото
+                personPhotoDAO.save(id, resultFileName);
+            if(personPhotoDAO.showPath(id).isPresent()) // если нужно обновить старое фото
+                personPhotoDAO.update(id, resultFileName);
         }
-
         return "redirect:/people/" + id;
     }
 

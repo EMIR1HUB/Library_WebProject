@@ -7,14 +7,17 @@ public class BookInfo {
     private String author;
     private Integer year;
 
+    private String pathFileName;
+
     public BookInfo(){}
 
-    public BookInfo(Long id, Long personId, String name, String author, Integer year) {
+    public BookInfo(Long id, Long personId, String name, String author, Integer year, String pathFileName) {
         this.id = id;
         this.personId = personId;
         this.name = name;
         this.author = author;
         this.year = year;
+        this.pathFileName = pathFileName;
     }
 
     public Long getId() {
@@ -55,5 +58,13 @@ public class BookInfo {
 
     public void setYear(Integer year) {
         this.year = year;
+    }
+
+    public String getPathFileName() {
+        return pathFileName;
+    }
+
+    public void setPathFileName(String pathFileName) {
+        this.pathFileName = pathFileName;
     }
 }

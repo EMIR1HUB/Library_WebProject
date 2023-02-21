@@ -33,25 +33,27 @@
 </nav>
 
 <div class="container">
-    <table border="1">
-        <tr>
-            <th>ID</th>
-            <th>Full Name</th>
-            <th>Date Birth</th>
-            <th>Email</th>
-        </tr>
-        <tr th:each="person : ${people}">
-            <td th:utext="${person.getId()}">user</td>
-            <td><a th:href="@{/people/{id}(id=${person.getId()})}" th:text="${person.getName() +
-        ' ' + person.getLastName() + ' ' + person.getPatronymic()}">user</a></td>
-            <td th:utext="${person.getDateBirth()}">date</td>
-            <td th:utext="${person.getEmail()}">email</td>
-        </tr>
-    </table>
+    <div class="row row_new">
+        <table class="col-6">
+            <tr>
+                <!-- <th>ID</th> -->
+                <th>ФИО</th>
+                <th>Дата рождения</th>
+                <th>Email</th>
+            </tr>
+            <tr th:each="person : ${people}">
+                <!-- <td th:utext="${person.getId()}">user</td> -->
+                <td><a th:href="@{/people/{id}(id=${person.getId()})}" th:text="${person.getName() +
+                ' ' + person.getLastName() + ' ' + person.getPatronymic()}">user</a></td>
+                <td th:utext="${person.getDateBirth()}">date</td>
+                <td th:utext="${person.getEmail()}">email</td>
+            </tr>
+        </table>
 
-    <br><hr>
+        <!-- <br><hr> -->
 
-    <a href="/people/new">Create new person</a>
+        <a class="col-2 text-center" href="/people/new">Создать пользователя</a>
+    </div>
 </div>
 
 
