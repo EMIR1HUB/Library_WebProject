@@ -238,7 +238,7 @@ body {
   display: inline-block;
   top: 1px;
   right: 3px;
-  background: url("../img/arrow.png") right/50% no-repeat var(--bg-color4);
+  background: url("../../arrow.png") right/50% no-repeat var(--bg-color4);
   pointer-events: none;
 }
 
@@ -384,6 +384,10 @@ input[type="submit"]:hover {
 .padd-15 {
   padding-left: 15px;
   padding-right: 15px;
+}
+
+.fix .col-3 {
+  margin-top: 0;
 }
 
 /*# sourceMappingURL=style.css.map */

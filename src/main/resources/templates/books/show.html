@@ -32,34 +32,6 @@
     </div>
 </nav>
 
-    <!--  if book doesn't free  -->
-    <div th:if="${owner}">
-        <span th:text="${'Книга сейчас у: ' + owner.getFullName()}">person</span>
-        <form th:method="PATCH" th:action="@{/books/{id}/release(id=${book.getId()})}">
-            <input type="submit" value="Освободить книгу">
-        </form>
-    </div>
-
-    <!--  if book free  -->
-    <div th:if="${people}">
-        <span>Эта книга свободна. Кому назанчить ее?</span>
-        <form th:method="PATCH" th:action="@{/books/{id}/assign(id=${book.getId()})}">
-            <label for="person">Выберите человека: </label>
-            <select th:object="${person}" th:field="*{id}" id="person">
-                <option th:each="person : ${people}" th:value="${person.getId()}" th:text="${person.getFullName()}"></option>
-            </select>
-            <input type="submit" value="Назначить книгу">
-        </form>
-    </div>
-
-<!--    <hr><br>-->
-
-<!--    <a th:href="@{/books/{id}/edit(id=${person.getId()})}">Редактировать</a>-->
-
-<!--    <form th:method="DELETE" th:action="@{/books/{id}(id=${person.getId()})}">-->
-<!--        <input type="submit" value="Удалить"/>-->
-<!--    </form>-->
-
 
 <div class="container">
     <div class="row">
@@ -75,40 +47,40 @@
         </div>
     </div>
 
+    <hr/>
 
-    <!--    if person has books -->
-<!--    <div th:if="${!books.isEmpty()}">-->
-<!--        <hr>-->
-<!--        <h4>Книги</h4>-->
-<!--        <div th:each="book : ${books}">-->
-<!--            <p th:text="${book.getName() + ', ' + book.getAuthor() + ', ' + book.getYear() + ' г.'}">book</p>-->
-<!--        </div>-->
-<!--    </div>-->
+    <!--  if book doesn't free  -->
+    <div class="row align-items-baseline fix" th:if="${owner}">
+        <div class="col-3">
+            <p th:text="${'Книга сейчас у: ' + owner.getFullName()}">person</p>
+        </div>
+        <div class="col-3">
+            <form th:method="PATCH" th:action="@{/books/{id}/release(id=${book.getId()})}">
+                <input type="submit" value="Освободить книгу">
+            </form>
+        </div>
+    </div>
 
-    <!--  add new book  -->
-<!--    <div th:if="${booksFree.size() != 0}">-->
-<!--        <form action="#" th:method="PATCH" th:action="@{/people/{id}/assign(id=${person.getId()})}">-->
-<!--            <label for="book">Выбрать книгу: </label>-->
-<!--            <div class="mybox">-->
-<!--                <span class="myarrow"></span>-->
-<!--                <select th:object="${book}" th:field="*{id}" id="book">-->
-<!--                    <option th:each="book : ${booksFree}" th:value="${book.getId()}" th:text="${book.getName()}">-->
-<!--                    </option>-->
-<!--                </select>-->
-<!--            </div>-->
-<!--            <input type="submit" value="Назначить книгу">-->
-<!--        </form>-->
-<!--    </div>-->
-<!--    <div th:if="${booksFree.size() == 0}">-->
-<!--        <p>Нет свободных книг</p>-->
-<!--    </div>-->
+    <!--  if book free  -->
+    <div th:if="${people}">
+        <span>Эта книга свободна. Кому назанчить ее?</span>
+        <form th:method="PATCH" th:action="@{/books/{id}/assign(id=${book.getId()})}">
+            <label for="person">Выберите человека: </label>
+            <div class="mybox">
+                <span class="myarrow"></span>
+                <select th:object="${person}" th:field="*{id}" id="person">
+                    <option th:each="person : ${people}" th:value="${person.getId()}" th:text="${person.getFullName()}">
+                    </option>
+                </select>
+            </div>
+            <input type="submit" value="Назначить книгу">
+        </form>
+    </div>
 
-    <hr>
-
+    <hr/>
 
     <div class="row row_new text-center">
         <a class="col-2" th:href="@{/books/{id}/edit(id=${person.getId()})}">Редактировать</a>
-
         <form class="col-2" th:method="DELETE" th:action="@{/books/{id}(id=${person.getId()})}">
             <input type="submit" value="Удалить" />
         </form>
