@@ -21,7 +21,7 @@ public class BookDAO {
 
     public List<BookInfo> index() {
         String SQL = "SELECT book.id, person_id, name, author, year, path_file_name " +
-                "FROM book LEFT JOIN book_photo bp on book.id = bp.book_id";
+                "FROM book LEFT JOIN book_photo bp on book.id = bp.book_id ORDER BY book_id DESC";
         return jdbcTemplate.query(SQL, new BeanPropertyRowMapper<>(BookInfo.class));
     }
 
