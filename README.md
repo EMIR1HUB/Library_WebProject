@@ -16,6 +16,35 @@
 Таким образом, целью данного приложения является предоставление удобного и эффективного инструмента для управления
 цифровой библиотекой и обеспечения контроля за ее работой.
 
+## Запуск программы
+
+1. клонирование репозитория `git clone https://github.com/EMIR1HUB/Library_WebProject.git`
+2. добавление файла `application.properties` в пакет resources
+3. настройка файла `application.properties`
+```properties
+# ===============================
+# DATABASE
+# ===============================
+db.driver=org.postgresql.Driver
+db.url=jdbc:postgresql://localhost:5432/название БД
+db.username=
+db.password=
+
+upload.path=полный путь расположение файлов
+
+# ===============================
+# JPA / HIBERNATE
+# ===============================
+spring.jpa.show-sql=true
+spring.jpa.hibernate.ddl-auto=none
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQL82Dialect
+spring.jpa.properties.hibernate.current_session_context_class=org.springframework.orm.hibernate5.SpringSessionContext
+
+# Fix Postgres JPA Error:
+# Method org.postgresql.jdbc.PgConnection.createClob() is not yet implemented.
+spring.jpa.properties.hibernate.temp.use_jdbc_metadata_defaults=false
+```
+
 ## Диаграмма классов
 
 <img src="img/classes.jpg">

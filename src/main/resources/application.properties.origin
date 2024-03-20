@@ -1,4 +1,21 @@
-db.driver=
-db.url=
+# ===============================
+# DATABASE
+# ===============================
+db.driver=org.postgresql.Driver
+db.url=jdbc:postgresql://localhost:5432/<<db_name>>
 db.username=
 db.password=
+
+upload.path=
+
+# ===============================
+# JPA / HIBERNATE
+# ===============================
+spring.jpa.show-sql=true
+spring.jpa.hibernate.ddl-auto=none
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQL82Dialect
+spring.jpa.properties.hibernate.current_session_context_class=org.springframework.orm.hibernate5.SpringSessionContext
+
+# Fix Postgres JPA Error:
+# Method org.postgresql.jdbc.PgConnection.createClob() is not yet implemented.
+spring.jpa.properties.hibernate.temp.use_jdbc_metadata_defaults=false
